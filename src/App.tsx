@@ -1,58 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, {useEffect, useState,} from 'react';
+import classes from "./App.module.css";
+import {useAppDispatch, useAppSelector} from "./hooks/hooks";
+import {fetchWeather} from "./store/reducers/ActionCreator";
+import Search from "./components/Search/Search";
+import Logo from "./components/Logo/Logo";
+import WeatherNow from "./components/WeatherNow/WeatherNow";
+import BartWelcom from "./components/BartWelcome/BartWelcom";
+import Forecast from "./components/Forecast/Forecast";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+    const [startWeather, setStartWeather] = useState(false)
+    const currentCity = useAppSelector(state => state.currentCity)
+    const {error, requestCompleted} = useAppSelector(state => state.weatherNow)
+    const dispatch = useAppDispatch()
+
+
+    useEffect(() => {
+        if(startWeather) dispatch(fetchWeather(currentCity))
+    }, [currentCity])
+
+    return (
+        <div className={classes.wrapper}>
+            <Logo/>
+            <Search setStartWeather={setStartWeather} />
+            {error
+                ? <p>{error}</p>
+                : requestCompleted
+                ? <>
+                        <WeatherNow/>
+                        <Forecast />
+                    </>
+                : <BartWelcom/>
+            }
+
+        </div>
+    );
 }
 
 export default App;

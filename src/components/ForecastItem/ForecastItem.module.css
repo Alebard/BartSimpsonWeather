@@ -1,0 +1,25 @@
+.item{
+    width: 108px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.item_info{
+    width: 100%;
+    text-align: center;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+}
+
+.item_image{
+    margin-top: 5px;
+    width: 80%;
+}
+
+.item_image img{
+    width: 100%;
+}

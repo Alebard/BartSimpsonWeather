@@ -1,0 +1,52 @@
+.weather_now{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.weather_now__data{
+    width: 206px;
+    height: 296px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.city{
+    font-size: 32px;
+    color: #FFC700;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
+}
+
+.day, .weather_status, .temp{
+    font-size: 20px;
+    color: #141647;
+    margin-top: 40px;
+}
+
+.weather_image{
+    position: relative;
+    width: 127px;
+    margin-left: 56px;
+}
+
+.weather_image::before{
+    content: '';
+    position: absolute;
+    width: 392px;
+    height: 392px;
+    left: calc(50% - 192px);
+    top: calc(50% - 192px);
+    background: radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.weather_image img{
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
