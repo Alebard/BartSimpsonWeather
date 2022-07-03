@@ -5,9 +5,8 @@ import {fetchWeather} from "./store/reducers/ActionCreator";
 import Search from "./components/Search/Search";
 import Logo from "./components/Logo/Logo";
 import WeatherNow from "./components/WeatherNow/WeatherNow";
-import BartWelcom from "./components/BartWelcome/BartWelcom";
+import BartSay from "./components/BartSay/BartSay";
 import Forecast from "./components/Forecast/Forecast";
-
 
 function App() {
     const [startWeather, setStartWeather] = useState(false)
@@ -15,25 +14,20 @@ function App() {
     const {error, requestCompleted} = useAppSelector(state => state.weatherNow)
     const dispatch = useAppDispatch()
 
-
     useEffect(() => {
-        if(startWeather) dispatch(fetchWeather(currentCity))
+        if (startWeather) dispatch(fetchWeather(currentCity))
     }, [currentCity])
-
     return (
         <div className={classes.wrapper}>
             <Logo/>
-            <Search setStartWeather={setStartWeather} />
-            {error
-                ? <p>{error}</p>
-                : requestCompleted
-                ? <>
+            <Search setStartWeather={setStartWeather}/>
+            { requestCompleted
+                    ? <>
                         <WeatherNow/>
-                        <Forecast />
+                        <Forecast/>
                     </>
-                : <BartWelcom/>
+                    : <BartSay error={error}/>
             }
-
         </div>
     );
 }

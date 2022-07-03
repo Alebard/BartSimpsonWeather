@@ -2,7 +2,7 @@ export interface IWeather {
     weatherData: IWeatherData;
     requestCompleted: boolean;
     isLoading: boolean;
-    error: string;
+    error: number | null;
 }
 
 interface IWeatherListItem {

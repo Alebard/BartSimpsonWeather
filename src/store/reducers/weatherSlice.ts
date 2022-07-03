@@ -11,7 +11,7 @@ const initialState: IWeather = {
     },
     requestCompleted: false,
     isLoading: false,
-    error: ''
+    error: null,
 }
 
 
@@ -22,11 +22,11 @@ export const WeatherSlice = createSlice({
     extraReducers: {
         [fetchWeather.fulfilled.type]: (state, action: PayloadAction<IWeatherData>) => {
             state.isLoading = false;
-            state.error = '';
+            state.error = null;
             state.weatherData = action.payload;
             state.requestCompleted = true
         },
-        [fetchWeather.rejected.type]: (state, action: PayloadAction<string>) => {
+        [fetchWeather.rejected.type]: (state, action: PayloadAction<number>) => {
             state.isLoading = false;
             state.error = action.payload;
         },

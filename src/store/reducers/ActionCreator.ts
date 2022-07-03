@@ -10,7 +10,7 @@ export const fetchWeather = createAsyncThunk(
             const response = await axios.get<IWeather>(getUrl('forecast', str ))
             return response.data
         }catch (e: any) {
-            return thunkApi.rejectWithValue(e.message)
+            return thunkApi.rejectWithValue(e.response.status)
         }
     }
 )

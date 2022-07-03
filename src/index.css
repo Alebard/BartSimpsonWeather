@@ -4,6 +4,7 @@
 }
 body{
     background: url('./images/bg.png');
+    background-color: #00aef2;
     background-size: cover;
     font-family: Simpsonfont, sans-serif;
 }

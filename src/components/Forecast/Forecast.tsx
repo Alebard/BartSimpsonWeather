@@ -3,7 +3,7 @@ import {useAppSelector} from "../../hooks/hooks";
 import ForecastItem from "../ForecastItem/ForecastItem";
 import classes from "./Forecast.module.css"
 
-const forecastsIndex = [7,15,23,31,39]
+const forecastsIndex = [8,16,24,32]
 
 const Forecast = () => {
     const weatherData = (useAppSelector(state => state.weatherNow.weatherData.list))
